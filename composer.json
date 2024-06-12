@@ -19,6 +19,7 @@
         }
     ],
     "require": {
-        "Cpkm/Admin": "*"
+        "Cpkm/Admin": "*",
+        "Cpkm/print": "*"
     }
 }

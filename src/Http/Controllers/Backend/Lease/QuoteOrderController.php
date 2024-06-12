@@ -181,4 +181,31 @@ class QuoteOrderController extends Controller
         $this->QuoteOrderService->delete($id);
         return response()->json(['message' => __('delete').__('success')]);
     }
+
+    public function print(string $id) {
+        $order = $this->QuoteOrderService->getLeaseQuoteOrder($id);
+        $TemplateService = app(config('print.template.service'));
+        $template = $TemplateService->getPrintTemplateByCode('lease_quote_order');
+        $data['template'] = $template;
+        $data['data'] = [
+            'date'  =>  $order->date,
+            'no'    =>  $order->no,
+            'company_address'   =>  $order->company->company_address,
+            'company_name'  =>  $order->company->company_name,
+            'company_phone' =>  $order->company->company_phone,
+            'company_fax'   =>  $order->company->tax_number,
+            'customer_name' =>  $order->customer->name,
+            'customer_phone'    =>  $order->customer->phone,
+            'customer_fax'  =>  $order->customer->tax,
+            'company_email' =>  $order->company->company_email,
+            'items' =>  $order->items,
+            'staff' =>  $order->staff?->name,
+            'amount'    =>  number_format($order->amount),
+            'tax'   =>  number_format($order->tax),
+            'total' =>  number_format($order->total_amount),
+            'chinese_total' =>  \Cpkm\Admin\Helpers\Universal\Universal::numberToChinese((float)$order->total_amount),
+            'day'   =>  3,
+        ];
+        return view('lease::backend.quote_order.print', $data);
+    }
 }

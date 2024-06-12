@@ -4,6 +4,7 @@
     <div class="row mb-2">
         <div class="col-12">
             <button class="btn @if($detail->status?->id == 1) btn-warning @elseif($detail->status?->id == 2) btn-primary @else btn-danger @endif" type="button" id="close" data-id="{{$detail->id}}">{{$detail->status->name}}</button>
+            <a href="{{route('backend.lease.quote_order.print', ['id' => $detail->id])}}" target="_blank" class="btn btn-info">列印</a>
             @if($detail->status?->id == 1 && !$detail->contract_order)
                 <a href="{{route('backend.lease.contract_order.create', ['sourceable_type' => \App\Models\LeaseQuoteOrder::class, 'sourceable_id' => $detail->id])}}" class="btn btn-success">轉租賃合約</a>
             @else

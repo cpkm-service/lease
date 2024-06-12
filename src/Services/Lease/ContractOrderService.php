@@ -69,7 +69,7 @@ class ContractOrderService extends OrderItemService
      */
     public function makeNo($date) {
         $no = (new \Carbon\Carbon($date))->format('Ymd');
-        $count = LeaseContractOrder::where('no', 'like', $no."%")->count() + 1;
+        $count = $this->LeaseContractOrderRepository->where('no', 'like', $no."%")->count() + 1;
         return $no.str_pad($count, 4, "0", STR_PAD_LEFT);
     }
 

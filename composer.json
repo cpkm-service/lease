@@ -1,0 +1,24 @@
+{
+    "name": "cpkm/lease",
+    "autoload": {
+        "psr-4": {
+            "Cpkm\\Lease\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Cpkm\\Lease\\LeaseServiceProvider"
+            ]
+        }
+    },
+    "authors": [
+        {
+            "name": "Henry",
+            "email": "asdcxz179@gmail.com"
+        }
+    ],
+    "require": {
+        "Cpkm/Admin": "*"
+    }
+}

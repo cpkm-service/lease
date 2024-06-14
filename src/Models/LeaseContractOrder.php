@@ -161,11 +161,11 @@ class LeaseContractOrder extends Model
     }
 
     public function currency() {
-        return $this->hasOne(Currency::class, 'id', 'currencies_id');
+        return $this->hasOne(\App\Models\Currency::class, 'id', 'currencies_id');
     }
 
     public function company() {
-        return $this->hasOne(Company::class, 'id', 'companies_id');
+        return $this->hasOne(\App\Models\Company::class, 'id', 'companies_id');
     }
     
     /**

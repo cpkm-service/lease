@@ -31,7 +31,9 @@ Route::middleware(['backend'])
                     Route::resource('overhaul_order', 'Lease\OverhaulOrderController');
                 });
 
-                /* 報價單 */
+                /* 報價單列印 */
                 Route::get('quote_order/print/{id}', 'Lease\QuoteOrderController@print')->name('quote_order.print');
+                /* 合約單列印 */
+                Route::get('contract_order/print/{id}', 'Lease\ContractOrderController@print')->name('contract_order.print');
             });
     });

@@ -202,15 +202,22 @@ class ContractOrderController extends Controller
         $template = $TemplateService->getPrintTemplateByCode('lease_contract_order');
         $data['template'] = $template;
         $data['data'] = [
-            'date'  =>  $order->date,
+            'date'  =>  date('d'),
+            'month' =>  date('m'),
+            'year'  =>  date('Y') - 1911,
             'no'    =>  $order->no,
             'company_address'   =>  $order->company->company_address,
-            'company_name'  =>  $order->company->company_name,
+            'company_user'  =>  $order->company->principal,
+            'company_uniform_numbers'   =>  $order->company->company_no,
+            'company_name'  =>  $order->company->name,
             'company_phone' =>  $order->company->company_phone,
             'company_fax'   =>  $order->company->tax_number,
             'customer_name' =>  $order->customer->name,
             'customer_phone'    =>  $order->customer->phone,
+            'customer_uniform_numbers'  =>  $order->customer->customer_banks?->first()?->no,
+            'customer_user' =>  $order->customer->customer_contacts?->first()?->name,
             'customer_fax'  =>  $order->customer->tax,
+            'customer_address'  =>  $order->customer->customer_contacts?->first()?->address,
             'company_email' =>  $order->company->company_email,
             'items' =>  $order->items,
             'staff' =>  $order->staff?->name,
@@ -219,6 +226,14 @@ class ContractOrderController extends Controller
             'total' =>  number_format($order->total_amount),
             'chinese_total' =>  \Cpkm\Admin\Helpers\Universal\Universal::numberToChinese((float)$order->total_amount),
             'day'   =>  3,
+            'project_name'  =>  $order->project->name,
+            'project_address'   =>  $order->project->address,
+            'contract_start_year'   =>  $order->lease_start_date->format('Y') - 1911,
+            'contract_start_month'   =>  $order->lease_start_date->format('m'),
+            'contract_start_date'   =>  $order->lease_start_date->format('d'),
+            'contract_end_year'   =>  $order->lease_end_date->format('Y') - 1911,
+            'contract_end_month'   =>  $order->lease_end_date->format('m'),
+            'contract_end_date'   =>  $order->lease_end_date->format('d'),
         ];
         return view('lease::backend.contract_order.print', $data);
     }

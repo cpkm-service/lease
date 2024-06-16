@@ -36,9 +36,12 @@ class LeaseContractOrder extends Model
         'sourceable_id',
         'lease_start_date',
         'lease_end_date',
+        'project_managements_id',
     ];
 
     protected $casts = [
+        'lease_start_date' => 'date:Y-m-d',
+        'lease_end_date' => 'date:Y-m-d',
     ];
 
     public static $audit = [
@@ -73,10 +76,10 @@ class LeaseContractOrder extends Model
                 'relation' => 'status',
                 'format' => 'name',
             ],
-            // 'projects_id' => [
-            //     'relation' => 'project',
-            //     'format' => 'name',
-            // ],
+            'project_managements_id' => [
+                'relation' => 'project',
+                'format' => 'name',
+            ],
         ],
     ];
 
@@ -107,6 +110,7 @@ class LeaseContractOrder extends Model
         'sourceable_id',
         'lease_start_date',
         'lease_end_date',
+        'project_managements_id',
     ];
 
     public $with = [
@@ -114,12 +118,22 @@ class LeaseContractOrder extends Model
         'items',
         'customer',
         'method',
-        'customer_contact'
+        'customer_contact',
+        'project',
     ];
 
     public function items()
     {
         return $this->hasMany(LeaseContractOrderItem::class);
+    }
+
+    /**
+     * 專案
+     *
+     * @return void
+     */
+    public function project() {
+        return $this->hasOne(\App\Models\ProjectManagement::class, 'id', 'project_managements_id');
     }
 
     /**

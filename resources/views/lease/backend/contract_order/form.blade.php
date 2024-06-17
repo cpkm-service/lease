@@ -113,6 +113,7 @@
                     $(`input[name="lease_end_date"]`).val(result.data.lease_end_date);
                     $(`input[name="lease_address"]`).val(result.data.lease_address);
                     $(`select[name="staff_id"]`).val(result.data.staff_id).trigger('change');
+                    $(`select[name="project_managements_id"]`).val(result.data.project_managements_id).trigger('change');
                     $(`select[name="customers_id"]`).removeAttr('transfer');
                 }, 500);
                 $(`textarea[name="remark"]`).text(result.data.remark)

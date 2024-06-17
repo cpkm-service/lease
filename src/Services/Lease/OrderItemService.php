@@ -78,7 +78,9 @@ class OrderItemService
         $exchange = $currency?->exchange??0;
         foreach ($data['items']??[] as $key => $item) {
             $amount = (float)bcmul($item['count'], $item['unit_amount'] , $decimal_point);
-            $tax = (float)bcmul($amount, $tax_percentage, $decimal_point);
+            $tax = (float)bcmul($amount, ($tax_percentage / 100), $decimal_point);
+            dump($amount);
+            dd($tax);
             //免稅
             if($invoice_type == 3) {
                 $tax = 0;
@@ -95,6 +97,7 @@ class OrderItemService
             $data['items'][$key]['main_amount']         = bcmul($amount, $exchange, $decimal_point);
             $data['items'][$key]['main_tax']            = bcmul($tax, $exchange, $decimal_point);
             $data['items'][$key]['main_total_amount']   = bcmul($total_amount, $exchange, $decimal_point);
+            
             //總金額加總
             $main_amount = (float)bcadd($main_amount, $amount, $decimal_point);
             $main_tax = (float)bcadd($main_tax, $tax, $decimal_point);

@@ -79,8 +79,6 @@ class OrderItemService
         foreach ($data['items']??[] as $key => $item) {
             $amount = (float)bcmul($item['count'], $item['unit_amount'] , $decimal_point);
             $tax = (float)bcmul($amount, ($tax_percentage / 100), $decimal_point);
-            dump($amount);
-            dd($tax);
             //免稅
             if($invoice_type == 3) {
                 $tax = 0;

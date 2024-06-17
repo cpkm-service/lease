@@ -56,7 +56,7 @@ class OverhaulOrderController extends Controller
         if(request()->expectsJson()) {
             if(request()->action == 'sourceable_type') {
                 return response()->json([   
-                    "data"  =>  (request()->type == \App\Models\LeaseReturnFactoryOrder::class)? $this->ReturnFactoryOrderService->select([
+                    "data"  =>  (request()->type == config('lease.return_factory_order.model'))? $this->ReturnFactoryOrderService->select([
                         'lease_return_factory_order_statuses_id'    =>  1,
                     ]): $this->ContractOrderService->select([
                         'lease_contract_order_statuses_id'    =>  1,
@@ -64,7 +64,7 @@ class OverhaulOrderController extends Controller
                 ]);
             }else if(request()->action == 'sourceable_id') {
                 return response()->json([   
-                    "data"  =>   (request()->type == \App\Models\LeaseReturnFactoryOrder::class)?$this->ReturnFactoryOrderService->getLeaseReturnFactoryOrder(request()->id): $this->ContractOrderService->getLeaseContractOrder(request()->id),
+                    "data"  =>   (request()->type == config('lease.return_factory_order.model'))?$this->ReturnFactoryOrderService->getLeaseReturnFactoryOrder(request()->id): $this->ContractOrderService->getLeaseContractOrder(request()->id),
                 ]);
             }else if(request()->action) {
                 return $this->getAjaxData();

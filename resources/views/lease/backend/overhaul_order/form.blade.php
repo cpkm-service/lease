@@ -30,11 +30,6 @@
                             {{ __('audit') }}
                         </button>
                     </li>
-                    {{-- <li class="nav-item audit-tab" role="presentation">
-                        <button type="button" class="nav-link" id="transfer-record-tab" data-bs-toggle="tab" data-bs-target="#transfer-record" role="tab" aria-controls="transfer-record" aria-selected="false" tabindex="-1">
-                            轉單紀錄
-                        </button>
-                    </li> --}}
                     @endif
                 </ul>
                 <div class="block-content tab-content">
@@ -45,65 +40,6 @@
                     <div class="tab-pane " id="btabs-static-profile" role="tabpanel" aria-labelledby="btabs-alt-static-home-tab">
                         @include('backend.layouts.audits', [ 'table' => $table, 'table_id' => $detail->id ])
                     </div>
-                    {{-- <div class="tab-pane " id="transfer-record" role="tabpanel" aria-labelledby="btabs-alt-static-home-tab">
-                        <div class="accordion" id="transfer-record-list">
-                            @foreach($detail->items as $item)
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#transfer-record-{{$item->id}}" aria-expanded="false" aria-controls="transfer-record-{{$item->id}}">
-                                        {{implode("-", array_filter([$item->name,$item->standard,$item->size]))}}
-                                    </button>
-                                </h2>
-                                <div id="transfer-record-{{$item->id}}" class="accordion-collapse collapse" data-bs-parent="#transfer-record-list">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <table class="table table-bordered w-100">
-                                                    <thead>
-                                                        <tr>
-                                                            <th class="text-center">#</th>
-                                                            <th class="text-center">請購序</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.products_id')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.name')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.standard')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.size')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.pre_count')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.unit')}}</th>
-                                                            <th class="text-center">{{__('backend.purchase_orders.no')}}</th>
-                                                            <th class="text-center">採購序</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.already_count')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.yet_count')}}</th>
-                                                            <th class="text-center">{{__('backend.subscription_orders.subscription_order_items.*.income_count')}}</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        @foreach($item->purchase_order_items as $key => $purchase_order_item)
-                                                        <tr>
-                                                            <th class="text-center">{{($key + 1)}}</th>
-                                                            <th class="text-center">{{($item->id)}}</th>
-                                                            <th class="text-center">{{($item->product->product_serial)}}</th>
-                                                            <th class="text-center">{{($item->name)}}</th>
-                                                            <th class="text-center">{{($item->standard)}}</th>
-                                                            <th class="text-center">{{($item->size)}}</th>
-                                                            <th class="text-center">{{($item->count)}}</th>
-                                                            <th class="text-center">{{($item->unit)}}</th>
-                                                            <th class="text-center">{{$item->purchase_order_items?->first()?->sourceable?->no}}</th>
-                                                            <th class="text-center">{{$item->purchase_order_items?->first()?->sourceable?->id}}</th>
-                                                            <td class="text-center">{{number_format($purchase_order_item->count)}}</td>
-                                                            <th class="text-center">{{number_format($item->count - $purchase_order_item->count)}}</th>
-                                                            <td class="text-center">{{number_format($purchase_order_item->restock_order_items->sum('count'))}}</td>
-                                                        </tr>
-                                                        @endforeach
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div> --}}
                     @endif
                 </div>
             </div>
@@ -183,6 +119,7 @@
                     $(`input[name="lease_end_date"]`).val(result.data.lease_end_date);
                     $(`input[name="lease_address"]`).val(result.data.lease_address);
                     $(`select[name="staff_id"]`).val(result.data.staff_id).trigger('change');
+                    $(`select[name="project_managements_id"]`).val(result.data.project_managements_id).trigger('change');
                     $(`select[name="customers_id"]`).removeAttr('transfer');
                 }, 500);
                 $(`textarea[name="remark"]`).text(result.data.remark)

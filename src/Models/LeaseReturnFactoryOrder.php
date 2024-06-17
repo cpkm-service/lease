@@ -36,6 +36,7 @@ class LeaseReturnFactoryOrder extends Model
         'sourceable_id',
         'lease_start_date',
         'lease_end_date',
+        'project_managements_id',
     ];
 
     protected $casts = [
@@ -67,16 +68,17 @@ class LeaseReturnFactoryOrder extends Model
             'lease_return_factory_order_statuses_id',
             'lease_start_date',
             'lease_end_date',
+            'project_managements_id',
         ],
         'translation' => [
             'lease_return_factory_order_statuses_id' => [
                 'relation' => 'status',
                 'format' => 'name',
             ],
-            // 'projects_id' => [
-            //     'relation' => 'project',
-            //     'format' => 'name',
-            // ],
+            'project_managements_id' => [
+                'relation' => 'project',
+                'format' => 'name',
+            ],
         ],
     ];
 
@@ -107,6 +109,7 @@ class LeaseReturnFactoryOrder extends Model
         'sourceable_id',
         'lease_start_date',
         'lease_end_date',
+        'project_managements_id',
     ];
 
     public $with = [
@@ -114,12 +117,23 @@ class LeaseReturnFactoryOrder extends Model
         'items',
         'customer',
         'method',
-        'customer_contact'
+        'customer_contact',
+        'sourceable',
+        'project',
     ];
 
     public function items()
     {
         return $this->hasMany(LeaseReturnFactoryOrderItem::class);
+    }
+
+    /**
+     * 專案
+     *
+     * @return void
+     */
+    public function project() {
+        return $this->hasOne(\App\Models\ProjectManagement::class, 'id', 'project_managements_id');
     }
 
     /**

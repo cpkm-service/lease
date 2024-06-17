@@ -2193,6 +2193,15 @@ return [
                             'col'   =>  [
                                 [
                                     'class' =>  'fields',
+                                    'field' =>  'project_managements_id',
+                                ]
+                            ]
+                        ],
+                        [
+                            'class' =>  'col-6',
+                            'col'   =>  [
+                                [
+                                    'class' =>  'fields',
                                     'field' =>  'file',
                                 ]
                             ]
@@ -2564,6 +2573,20 @@ return [
                     'rules' =>  [
                         
                     ]
+                ],
+                //專案資料
+                'project_managements_id'   =>  [
+                    'tag'           =>  'select',
+                    'name'          =>  'project_managements_id',
+                    'text'          =>  'lease::backend.lease_return_factory_orders.project_managements_id',
+                    'placeholder'   =>  'lease::backend.lease_return_factory_orders.project_managements_id',
+                    'required'      =>  true,
+                    'rules' =>  [
+                        
+                    ],
+                    'options'       =>  [
+                    ],
+                    'source'    =>  \App\Service\ProjectManagementService::class,
                 ],
                 //附加檔案
                 'file'   =>  [
@@ -3205,6 +3228,15 @@ return [
                             'col'   =>  [
                                 [
                                     'class' =>  'fields',
+                                    'field' =>  'project_managements_id',
+                                ]
+                            ]
+                        ],
+                        [
+                            'class' =>  'col-6',
+                            'col'   =>  [
+                                [
+                                    'class' =>  'fields',
                                     'field' =>  'file',
                                 ]
                             ]
@@ -3598,6 +3630,20 @@ return [
                     'rules' =>  [
                         
                     ]
+                ],
+                //專案資料
+                'project_managements_id'   =>  [
+                    'tag'           =>  'select',
+                    'name'          =>  'project_managements_id',
+                    'text'          =>  'lease::backend.lease_overhaul_orders.project_managements_id',
+                    'placeholder'   =>  'lease::backend.lease_overhaul_orders.project_managements_id',
+                    'required'      =>  true,
+                    'rules' =>  [
+                        
+                    ],
+                    'options'       =>  [
+                    ],
+                    'source'    =>  \App\Service\ProjectManagementService::class,
                 ],
                 //附加檔案
                 'file'   =>  [

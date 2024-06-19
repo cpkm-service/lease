@@ -104,6 +104,10 @@ class OrderItemService
             if(isset($item['file']) && $item['file'] && $item['file'] instanceof \Illuminate\Http\UploadedFile) {
                 $data['items'][$key]['file'] = $item['file']->storeAs($this->order_item_folder, date('YmdHis')."-".$item['file']->getClientOriginalName() , 'public');
             }
+
+            if($item['factory_hours']??false && $item['return_factory_hours']??false) {
+                $data['items'][$key]['use_hours'] = $item['factory_hours'] - $item['return_factory_hours'];
+            }
         }
         $data['amount'] =   $main_amount;
         $data['tax']    =   $main_tax;

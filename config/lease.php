@@ -2851,6 +2851,7 @@ return [
                     'text'          =>  'lease::backend.lease_return_factory_orders.lease_return_factory_order_items.*.use_hours',
                     'placeholder'   =>  'lease::backend.lease_return_factory_orders.lease_return_factory_order_items.*.use_hours',
                     'required'      =>  false,
+                    'disabled'      =>  true,
                     'float'         =>  1,
                     'rules' =>  [
                         

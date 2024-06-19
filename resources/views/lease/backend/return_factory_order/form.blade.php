@@ -173,5 +173,14 @@
     @if(request()->sourceable_id)
         $(`select[name="sourceable_id"]`).val('{{addslashes(request()->sourceable_id)}}').trigger('change');
     @endif
+    
+    $(document).on('keyup', 'form input[id$="[factory_hours]"], form input[id$="[return_factory_hours]"]', function() {
+        let name = $(this).data("name");
+        let item = name.match(/items\[(\d+)\]/)[1];
+        let factory_hours = parseFloat($(`[name="items[${item}][factory_hours]"]`).val());
+        let return_factory_hours = parseFloat($(`[name="items[${item}][return_factory_hours]"]`).val());
+        let total = factory_hours - return_factory_hours;
+        $(`[id="number-items[${item}][use_hours]"]`).val(total).keyup();
+    });
 </script>
 @endpush

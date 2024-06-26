@@ -54,10 +54,9 @@
     </div>
 <!-- END Page Content -->
 </main>
-<x-backend.product.product-number />
 @endsection
 @push('style')
-<link rel="stylesheet" href="/css/order.css">
+<link rel="stylesheet" href="{{asset(Universal::version('/css/order.css'))}}">
 <style>
     #btabs-static-home th,#btabs-static-home td {
         white-space:nowrap;
